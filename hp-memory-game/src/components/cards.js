@@ -21,11 +21,15 @@ const [items, setItems] = useState([
     { id: 8, img: '/images/snake.jpg', stat: ""}
    
 ].sort(() => Math.random() - 0.5))
+
+function handleClick(id) {
+    alert(id)
+}
  
     return(
         <div className="container">
             {items.map((item, index )=> (
-                <Card key={index} item={item}/>
+                <Card key={index} item={item} id={index} handleClick={handleClick}/>
             ))}
         </div>
     )
