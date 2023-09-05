@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height: 100%;
+}
+body {
+    background-color: #EEBA35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.container {
+    height: 700px;
+    width: 700px;
+    background-color: red;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.card{
+    background-color: #fff;
+}
