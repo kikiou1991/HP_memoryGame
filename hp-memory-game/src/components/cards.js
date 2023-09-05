@@ -20,7 +20,7 @@ const [items, setItems] = useState([
     { id: 8, img: '/images/snake.jpg', stat: ""},
     { id: 8, img: '/images/snake.jpg', stat: ""}
    
-])
+].sort(() => Math.random() - 0.5))
  
     return(
         <div className="container">

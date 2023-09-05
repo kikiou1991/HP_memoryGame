@@ -4,6 +4,8 @@
 }
 html, body {
     height: 100%;
+    overflow:auto
+    
 }
 body {
     background-color: #EEBA35;
@@ -14,6 +16,7 @@ body {
 h1{
     text-align: center;
     margin-bottom: 1em;
+    margin-top: 2em;
 }
 
 .container {
