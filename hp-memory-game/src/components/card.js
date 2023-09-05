@@ -1,7 +1,7 @@
-function Card() {
+function Card({item}) {
     return (
         <div className="card">
-            Card
+            <img src={item.img} alt={item.id}/>
         </div>
     )
 }
