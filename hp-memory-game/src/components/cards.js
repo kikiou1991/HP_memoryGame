@@ -24,6 +24,8 @@ const [items, setItems] = useState([
    
 ].sort(() => Math.random() - 0.5)) //randomise the page after the page is reloaded
 
+const [flippedCount, setFlippedCount] = useState(0);
+
 const[prev, setPrev] = useState(-1)
 //function to check the current cards
 function check(current) {
@@ -46,15 +48,18 @@ function check(current) {
 }
 
 function handleClick(id) {
-   if(prev === -1) {
+   if(prev === -1 && flippedCount < 2) {
     items[id].stat = "active"
+    setFlippedCount(flippedCount + 1) //Increase the flipped number by one
     setItems([...items])
     setPrev(id)
-   }else{
-    check(id)
+   }else if(flippedCount === 1){
+
+    check(id);
+    setFlippedCount(0) //Reset the flipped count
    }
 }
-
+ 
   function resetBoard() {
     // Clear the 'stat' property of each card
     items.forEach((item) => {
