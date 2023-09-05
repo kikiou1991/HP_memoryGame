@@ -27,6 +27,7 @@ h1{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 1em;
+    
 }
 .card{
     background-color: #fff;
@@ -76,4 +77,20 @@ h1{
 }
 .card.correct {
     background-color: rgb(13, 88, 13);
+}
+.reset-button {
+  top: 10px;
+  left: 10px;
+  border-style: solid;
+  justify-content: center;
+  padding: 1em;
+  border-radius: 10px;
+  
+}
+.holder {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

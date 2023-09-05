@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Card from "./card";
+import ResetButton from "./button";
 
 function Cards() {
+    //state to hold our images and help update the stat when a card is selected
 const [items, setItems] = useState([
     { id: 1, img: '/images/badger.png', stat: ""},
     { id: 1, img: '/images/badger.png', stat: ""},
@@ -20,21 +22,21 @@ const [items, setItems] = useState([
     { id: 8, img: '/images/snake.jpg', stat: ""},
     { id: 8, img: '/images/snake.jpg', stat: ""}
    
-].sort(() => Math.random() - 0.5))
+].sort(() => Math.random() - 0.5)) //randomise the page after the page is reloaded
 
 const[prev, setPrev] = useState(-1)
-
+//function to check the current cards
 function check(current) {
-    if(items[current].id === items[prev].id){
+    if(items[current].id === items[prev].id){ //if the two flipped cards ids match we change the stat to correct
         items[current].stat = "correct"
         items[prev].stat ="correct"
         setItems([...items])
         setPrev(-1)
     }else{
-        items[current].stat = "wrong"
+        items[current].stat = "wrong" //if the flipped cards are incorrect give them the 'wrong' class to apply the css
         items[prev].stat = "wrong"
         setItems([...items])
-        setTimeout(() => {
+        setTimeout(() => {              //logic to flip the cards back if they dont match after 1ms
             items[current].stat = ""
             items[prev].stat = ""
             setItems([...items])
@@ -52,14 +54,31 @@ function handleClick(id) {
     check(id)
    }
 }
+
+  function resetBoard() {
+    // Clear the 'stat' property of each card
+    items.forEach((item) => {
+      item.stat = "";
+    });
+
+    // Reshuffle the cards
+    setItems([...items.sort(() => Math.random() - 0.5)]);
+    setPrev(-1);
+  }
  
-    return(
-        <div className="container">
-            {items.map((item, index )=> (
-                <Card key={index} item={item} id={index} handleClick={handleClick}/>
-            ))}
+    return (
+        <div className="holder">
+            <div>
+                <ResetButton onReset={resetBoard} /> {/* Render the ResetButton component */}
+            </div>
+            <div className="container">
+            {items.map((item, index) => (
+                <Card key={index} item={item} id={index} handleClick={handleClick} />
+                ))}
+            </div>
+        
         </div>
-    )
+  );
 }
 
 export default Cards;
