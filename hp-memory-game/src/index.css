@@ -87,6 +87,19 @@ h1 {
     padding: 1em;
     border-radius: 10px;
 }
+.diff-button {
+    top: 10px;
+    left: 10px;
+    border-style: solid;
+    justify-content: center;
+    padding: 1em;
+    border-radius: 10px;
+    
+}
+.diff-style {
+    display: flex;
+    gap: 0.5em;
+}
 
 .holder {
     display: flex;
