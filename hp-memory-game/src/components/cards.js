@@ -8,6 +8,7 @@ function Cards() {
     const [flippedCount, setFlippedCount] = useState(0);
     const [prev, setPrev] = useState(-1);
     const [difficulty, setDifficulty] = useState('Easy');
+    const [matchedPairs, setMatchedPairs] = useState(0); //state to track the matched pairs
 
     useEffect(() => {
         const cardsByDifficulty = {
@@ -56,6 +57,14 @@ function Cards() {
             items[prev].stat = 'correct';
             setItems([...items]);
             setPrev(-1);
+            const newMatchedPairs = matchedPairs + 1; // Increment pairs by one each time
+            setMatchedPairs(newMatchedPairs);
+            console.log("Matched Pairs:", newMatchedPairs);
+            if (newMatchedPairs === items.length / 2) { /* check if all pairs are matched if yes reset the board*/
+                resetBoard();
+                setMatchedPairs(0);
+            }
+
         } else {
             items[current].stat = 'wrong';
             items[prev].stat = 'wrong';
@@ -79,6 +88,7 @@ function Cards() {
             check(id);
             setFlippedCount(0);
         }
+
     }
 
     function resetBoard() {
