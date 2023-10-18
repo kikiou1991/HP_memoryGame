@@ -7,7 +7,7 @@ function Cards() {
     const [items, setItems] = useState([]);
     const [flippedCount, setFlippedCount] = useState(0);
     const [prev, setPrev] = useState(-1);
-    const [difficulty, setDifficulty] = useState('Easy');
+    const [difficulty, setDifficulty] = useState('Empty');
     const [matchedPairs, setMatchedPairs] = useState(0); //state to track the matched pairs
 
     useEffect(() => {
@@ -44,6 +44,7 @@ function Cards() {
                 { id: 8, img: '/images/snake.png', stat: "", id2: 15 },
                 { id: 8, img: '/images/snake.png', stat: "", id2: 16 }
             ], /*array for the hard game mode*/
+            Empty: []
         };
 
         const shuffledCards = cardsByDifficulty[difficulty].sort(() => Math.random() - 0.5);
