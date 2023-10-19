@@ -10,6 +10,7 @@ function App() {
   const [prev, setPrev] = useState(-1);
   const [difficulty, setDifficulty] = useState("Empty");
   const [matchedPairs, setMatchedPairs] = useState(0);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     const cardsByDifficulty = {
@@ -59,14 +60,12 @@ function App() {
       items[prev].stat = 'correct';
       setItems([...items]);
       setPrev(-1);
-      const newMatchedPairs = matchedPairs + 1; // Increment pairs by one each time
+      const newMatchedPairs = matchedPairs + 1;
       setMatchedPairs(newMatchedPairs);
-      console.log("Matched Pairs:", newMatchedPairs);
-      if (newMatchedPairs === items.length / 2) { /* check if all pairs are matched if yes reset the board*/
+      if (newMatchedPairs === items.length / 2) {
         resetBoard();
         setMatchedPairs(0);
       }
-
     } else {
       items[current].stat = 'wrong';
       items[prev].stat = 'wrong';
@@ -90,7 +89,6 @@ function App() {
       check(id);
       setFlippedCount(0);
     }
-
   }
 
   function resetBoard() {
@@ -98,23 +96,27 @@ function App() {
       item.stat = '';
     });
     setDifficulty('Empty');
+    setIsActive(false);
   }
+
   return (
     <div className="App">
       <div>
         <h1>Harry Potter Memory-Game</h1>
-
       </div>
       <div className="holder">
         <div className="reset-button">
           <ResetButton onReset={resetBoard} />
         </div>
         <div className="diff-style">
-          <Levels onChangeDifficulty={setDifficulty} />
+          <Levels onChangeDifficulty={setDifficulty} isActive={isActive} setIsActive={setIsActive} />
         </div>
         <div className="container">
-          <Cards items={items} difficulty={difficulty} handleClick={check} />
+          {/* <Cards items={items} difficulty={difficulty} handleClick={handleClick} /> */}
+          {isActive ? <Cards items={items} difficulty={difficulty} handleClick={handleClick} /> : null}
+          {!isActive && <img className='wizard' src="images/wizard.png" alt="wizard" />}
         </div>
+
       </div>
     </div>
   );

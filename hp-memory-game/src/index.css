@@ -121,3 +121,12 @@ h1 {
         height: 100px;
     }
 }
+.wizard {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    place-self: center;
+    background: black;
+    border-radius: 50%
+    
+}

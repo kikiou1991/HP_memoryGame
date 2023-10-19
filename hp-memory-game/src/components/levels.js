@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Levels = ({ onChangeDifficulty }) => {
+const Levels = ({ onChangeDifficulty, setIsActive, isActive }) => {
     const setDifficulty = [
         { title: 'Easy' },
         { title: 'Hard' },
     ];
+
+    const handleButtonClick = (title) => {
+        onChangeDifficulty(title);
+    };
 
     return (
         <>
@@ -12,7 +16,7 @@ const Levels = ({ onChangeDifficulty }) => {
                 <button
                     key={index}
                     className="diff-button"
-                    onClick={() => onChangeDifficulty(link.title)}
+                    onClick={() => handleButtonClick(link.title)}
                 >
                     {link.title}
                 </button>
