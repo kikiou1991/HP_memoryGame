@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { TypeAnimation } from 'react-type-animation';
 import Cards from "./components/cards";
 import ResetButton from "./components/button";
 import Levels from "./components/levels";
@@ -49,22 +49,22 @@ function App() {
       Empty: []
     };
 
-    const shuffledCards = cardsByDifficulty[difficulty].sort(() => Math.random() - 0.5);
+    const shuffledCards = cardsByDifficulty[difficulty].sort(() => Math.random() - 0.5); //shuffling the cards randomly
 
     setItems([...shuffledCards]);
   }, [difficulty]);
 
+  //function for checking for pairs
   function check(current) {
     if (items[current].id === items[prev].id && items[current].id2 !== items[prev].id2) {
       items[current].stat = 'correct';
       items[prev].stat = 'correct';
       setItems([...items]);
       setPrev(-1);
-      const newMatchedPairs = matchedPairs + 1;
+      const newMatchedPairs = matchedPairs + 1; //keeps track of the matched pairs
       setMatchedPairs(newMatchedPairs);
       if (newMatchedPairs === items.length / 2) {
-        resetBoard();
-        setMatchedPairs(0);
+        resetBoardDelay();
       }
     } else {
       items[current].stat = 'wrong';
@@ -78,7 +78,7 @@ function App() {
       }, 1000);
     }
   }
-
+  //function to handle flipping the cards, checking if they match
   function handleClick(id) {
     if (prev === -1 && flippedCount < 2) {
       items[id].stat = 'active';
@@ -90,13 +90,20 @@ function App() {
       setFlippedCount(0);
     }
   }
-
+  //function to reset the board
   function resetBoard() {
     items.forEach((item) => {
       item.stat = '';
     });
     setDifficulty('Empty');
     setIsActive(false);
+  }
+
+  function resetBoardDelay() {
+    setTimeout(() => {
+      resetBoard();
+      setMatchedPairs(0); //resets the board once they are all matched up
+    }, 5000)
   }
 
   return (
@@ -111,11 +118,32 @@ function App() {
         <div className="diff-style">
           <Levels onChangeDifficulty={setDifficulty} isActive={isActive} setIsActive={setIsActive} />
         </div>
-        <div className="container">
+        {isActive && <div className="container">
           {/* <Cards items={items} difficulty={difficulty} handleClick={handleClick} /> */}
-          {isActive ? <Cards items={items} difficulty={difficulty} handleClick={handleClick} /> : null}
-          {!isActive && <img className='wizard' src="images/wizard.png" alt="wizard" />}
-        </div>
+          <Cards items={items} difficulty={difficulty} handleClick={handleClick} /> : null
+        </div>}
+        {!isActive && <div className="hero">
+          <div className="text-animation">
+            <TypeAnimation
+              sequence={[
+                // Same substring at the start will only be typed out once, initially
+                'Welcome, please pick a difficulty!',
+                2000,
+                'Good luck and enjoy!',// wait 1s before replacing "Mice" with "Hamsters"
+
+              ]}
+              wrapper="span"
+              speed={25}
+              style={{ fontSize: '2em', display: 'inline-block', }}
+              repeat={Infinity}
+              deletionSpeed={25}
+            />
+          </div>
+          <div>
+            <img className='wizard' src="images/wizard.png" alt="wizard" />
+          </div>
+
+        </div>}
 
       </div>
     </div>

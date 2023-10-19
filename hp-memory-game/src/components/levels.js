@@ -7,6 +7,7 @@ const Levels = ({ onChangeDifficulty, setIsActive, isActive }) => {
     ];
 
     const handleButtonClick = (title) => {
+        setIsActive(true);
         onChangeDifficulty(title);
     };
 
