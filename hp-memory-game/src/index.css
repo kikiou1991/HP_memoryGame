@@ -10,12 +10,12 @@ body {
     background-color: #EEBA35;
     display: flex;
     justify-content: center;
-    align-items: center;
+    
 }
 h1 {
     text-align: center;
-    margin-bottom: 1em;
-    margin-top: 2em;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
 }
 
 .container {
@@ -82,10 +82,10 @@ h1 {
 .reset-button {
     top: 10px;
     left: 10px;
-    border-style: solid;
     justify-content: center;
     padding: 1em;
     border-radius: 10px;
+   
 }
 .diff-button {
     top: 10px;
@@ -94,6 +94,7 @@ h1 {
     justify-content: center;
     padding: 1em;
     border-radius: 10px;
+   
     
 }
 .diff-style {
