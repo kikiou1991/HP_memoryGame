@@ -25,7 +25,7 @@ h1 {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 5em;
 }
 
 .card {
@@ -141,3 +141,4 @@ h1 {
     margin-top: 2em;
     align-self: center;
 }
+
